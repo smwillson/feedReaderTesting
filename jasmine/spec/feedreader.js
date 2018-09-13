@@ -13,6 +13,8 @@ $(function() {
     * a related set of tests. This suite is all about the RSS
     * feeds definitions, the allFeeds variable in our application.
     */
+
+
     describe('RSS Feeds', function() {
         /* This is our first test - it tests to make sure that the
          * allFeeds variable has been defined and that it is not
@@ -60,7 +62,7 @@ $(function() {
          });
     });
 
-
+  describe('The menu', function() {
     /* TODO: Write a new test suite named "The menu" */
 
         /* TODO: Write a test that ensures the menu element is
@@ -68,13 +70,35 @@ $(function() {
          * the CSS to determine how we're performing the
          * hiding/showing of the menu element.
          */
+  it('menu element is hidden by default',function(){
 
+      var bodyElementClassName = document.querySelector('body').className;
+      expect(bodyElementClassName).toBe("menu-hidden");
+
+
+  });
          /* TODO: Write a test that ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
+          it('hamburger menu is displayed when clicked and hidden when clicked again',function(){
 
+            //when the menu icon is first clicked
+            $('.menu-icon-link').click();
+            var bodyElementClassName = document.querySelector('body').className;
+            expect(bodyElementClassName).not.toBe("menu-hidden");
+
+            //when the menu icon is clicked again
+              $('.menu-icon-link').click();
+              var bodyElementClassName = document.querySelector('body').className;
+              expect(bodyElementClassName).toBe("menu-hidden");
+          });
+
+
+
+
+});
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
