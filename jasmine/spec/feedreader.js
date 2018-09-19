@@ -187,6 +187,7 @@ $(function() {
     /*This test looks at the div element that holds the links/text that is displayed to the user in the DOM.
     We will do a regex match to extract the <h2></h2> tag from the string retuned by our querySelector and hold the results in an array.
     This will be done before and after the feed changes and the final results are compared.
+    Sources used for regex match : https://stackoverflow.com/questions/2622903/regex-how-to-get-contents-from-tag-inner-use-javascript
     */
 
     describe('Feed Entries changes are reflected in the DOM', function() {
