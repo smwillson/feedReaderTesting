@@ -84,7 +84,7 @@ $(function() {
                 throw errorMessage;
             }
             try {
-                expect(bodyElementClassName).toBe("menu-hidden");
+                expect(bodyElementClassName).toBe("menu-hidden"); // checks for the css class that drives menu visibility
             } catch (e) {
                 console.error(e);
             }
@@ -104,14 +104,14 @@ $(function() {
                 throw errorMessage;
             }
             try {
-                expect(bodyElementClassName).not.toBe("menu-hidden");
+                expect(bodyElementClassName).not.toBe("menu-hidden");// checks for the css class that drives menu visibility
             } catch (e) {
                 console.error(e);
             }
 
             //when the menu icon is clicked again
             $('.menu-icon-link').click();
-            var bodyElementClassName = document.querySelector('body').className;
+            var bodyElementClassName = document.querySelector('body').className;// checks for the css class that drives menu visibility
             if (bodyElementClassName === null) {
                 throw errorMessage;
             }
@@ -183,9 +183,13 @@ $(function() {
     });
 
 
-    //test dom for feed changes
+    //alternate test dom for feed changes
+    /*This test looks at the div element that holds the links/text that is displayed to the user in the DOM.
+    We will do a regex match to extract the <h2></h2> tag from the string retuned by our querySelector and hold the results in an array.
+    This will be done before and after the feed changes and the final results are compared.
+    */
 
-    describe('Feed Entries change on DOM Load', function() {
+    describe('Feed Entries changes are reflected in the DOM', function() {
         var errorMessage = "Null Exception. DOM element is not accessible.";
         var originalFeed, newFeed;
         var i = 0,

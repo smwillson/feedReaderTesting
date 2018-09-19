@@ -44,5 +44,24 @@ Review the Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/pr
 17. No test should be dependent on the results of another.
 18. Callbacks should be used to ensure that feeds are loaded before they are tested.
 19. Implement error handling for undefined variables and out-of-bound array access.
-20. When complete - all of your tests should pass. 
+20. When complete - all of your tests should pass.
 21. Write a README file detailing all steps required to successfully run the application. If you have added additional tests (for Udacious Test Coverage),  provide documentation for what these future features are and what the tests are checking for.
+
+
+How to run the application:
+In order to run the application, simply click on the index.html file to launch.
+
+There are 3 test suites for this application:
+
+1.  RSS Feeds. This tests for:
+    -> the array that drives the application is present and defined
+    -> the array has a property: name
+    ->the array has a property: url
+2. The menu. This tests for:
+    ->the menu on the page is hidden when the page loads
+    ->the visibility of the menu toggles when a user clicks on the icon
+3. Initial Entries. This tests for:
+    ->when the asynchronous function 'loadFeed' completes execution, the container that hold the entries is not empty
+4.  New Feed Selection. This test for:
+    -> when the asynchronous function 'loadFeed' uses different arguments and completes execution, the change is reflected in the DOM.
+5. Feed Entries changes are reflected in the DOM. This is alternate way to test #4.    
