@@ -100,7 +100,30 @@ $(function() {
 
 });
     /* TODO: Write a new test suite named "Initial Entries" */
+describe('Initial Entries', function(){
 
+var feed1, feed2;
+
+beforeEach(function(done){
+  loadFeed(0, function(){
+
+    done();
+
+
+  });
+
+});
+
+  it('there at least one entry in the feed container after loadFunction completes', function(done){
+
+
+  expect( $('.feed').length).toBeGreaterThan(0);
+done();
+  });
+
+
+
+});
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
@@ -109,7 +132,24 @@ $(function() {
          */
 
     /* TODO: Write a new test suite named "New Feed Selection" */
+    describe('New Feed Selection', function(){
 
+   var originalFeed, newFeed;
+      beforeEach(function(done) {
+            loadFeed(0, function() {
+                // store old feed
+                originalFeed = $('.feed').html();
+                // fetch newer feed
+                loadFeed(1, done);
+
+            });
+        });
+        newFeed =  $('.feed').html();
+        it('old feed does not match new feed', function() {
+            expect(newFeed).not.toBe(originalFeed);
+        });
+
+  });
         /* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
