@@ -54,7 +54,7 @@ function loadFeed(id, cb) {
         success: function(result, status) { //The success callback receives 2 parameters viz. response data, HTTP status
             try {
                 if (id < 0 && id >= allFeeds.length) {
-                    throw ("New exception");
+                    throw errorMsg;
                 }
                 var container = $('.feed'),
                     title = $('.header-title'),
@@ -78,7 +78,7 @@ function loadFeed(id, cb) {
                     cb();
                 }
             } catch (exception) {
-                console.error(errorMsg);
+                console.error(exception);
             }
         },
         error: function(result, status, err) {

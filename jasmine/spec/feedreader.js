@@ -8,13 +8,14 @@ $(function() {
      * feeds definitions, the allFeeds variable in our application.
      */
     describe('RSS Feeds', function() {
-        /* This is our first test - it tests to make sure that the
-         * allFeeds variable has been defined and that it is not
-         * empty. Experiment with this before you get started on
-         * the rest of this project. What happens when you change
-         * allFeeds in app.js to be an empty array and refresh the
-         * page?
-         */
+        var errorMessage = "allFeeds array is not defined or null."
+            /* This is our first test - it tests to make sure that the
+             * allFeeds variable has been defined and that it is not
+             * empty. Experiment with this before you get started on
+             * the rest of this project. What happens when you change
+             * allFeeds in app.js to be an empty array and refresh the
+             * page?
+             */
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
@@ -27,14 +28,20 @@ $(function() {
          */
         it('the urls are present and not empty', function() {
 
-            for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
-
-                expect(allFeeds[allFeedsIndx].hasOwnProperty("url")).toBe(true); //checks if the allFeeds array has the url property defined
-                expect(allFeeds[allFeedsIndx].url).not.toBe(null); //checks for null values
-                expect(allFeeds[allFeedsIndx].url).not.toBe(''); //checks for empty values
-
+            if (allFeeds === [] || allFeeds === null) {
+                throw errorMessage;
             }
+            try {
+                for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
 
+                    expect(allFeeds[allFeedsIndx].hasOwnProperty("url")).toBe(true); //checks if the allFeeds array has the url property defined
+                    expect(allFeeds[allFeedsIndx].url).not.toBe(null); //checks for null values
+                    expect(allFeeds[allFeedsIndx].url).not.toBe(''); //checks for empty values
+
+                }
+            } catch (e) {
+                console.error(e);
+            }
         });
 
         /* TODO: Write a test that loops through each feed
@@ -42,12 +49,19 @@ $(function() {
          * and that the name is not empty.
          */
         it('the names are present and not empty', function() {
-            for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
+            if (allFeeds === [] || allFeeds === null) {
+                throw errorMessage;
+            }
+            try {
+                for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
 
-                expect(allFeeds[allFeedsIndx].hasOwnProperty("name")).toBe(true); //checks if the allFeeds array has the name property defined
-                expect(allFeeds[allFeedsIndx].name).not.toBe(null); //checks for null values
-                expect(allFeeds[allFeedsIndx].name).not.toBe(''); //checks for empty values
+                    expect(allFeeds[allFeedsIndx].hasOwnProperty("name")).toBe(true); //checks if the allFeeds array has the name property defined
+                    expect(allFeeds[allFeedsIndx].name).not.toBe(null); //checks for null values
+                    expect(allFeeds[allFeedsIndx].name).not.toBe(''); //checks for empty values
 
+                }
+            } catch (e) {
+                console.error(e);
             }
         });
     });
@@ -61,11 +75,19 @@ $(function() {
      * hiding/showing of the menu element.
      */
     describe('The menu', function() {
+        var errorMessage = "Null Exception. DOM element is not accessible.";
+
         it('menu element is hidden by default', function() {
 
             var bodyElementClassName = document.querySelector('body').className;
-            expect(bodyElementClassName).toBe("menu-hidden");
-
+            if (bodyElementClassName === null || bodyElementClassName === '') {
+                throw errorMessage;
+            }
+            try {
+                expect(bodyElementClassName).toBe("menu-hidden");
+            } catch (e) {
+                console.error(e);
+            }
 
         });
         /* TODO: Write a test that ensures the menu changes
@@ -78,12 +100,28 @@ $(function() {
             //when the menu icon is first clicked
             $('.menu-icon-link').click();
             var bodyElementClassName = document.querySelector('body').className;
-            expect(bodyElementClassName).not.toBe("menu-hidden");
+            if (bodyElementClassName === null) {
+                throw errorMessage;
+            }
+            try {
+                expect(bodyElementClassName).not.toBe("menu-hidden");
+            } catch (e) {
+                console.error(e);
+            }
 
             //when the menu icon is clicked again
             $('.menu-icon-link').click();
             var bodyElementClassName = document.querySelector('body').className;
-            expect(bodyElementClassName).toBe("menu-hidden");
+            if (bodyElementClassName === null) {
+                throw errorMessage;
+            }
+            try {
+                expect(bodyElementClassName).toBe("menu-hidden");
+            } catch (e) {
+                console.error(e);
+            }
+
+
         });
 
 
@@ -148,7 +186,7 @@ $(function() {
     //test dom for feed changes
 
     describe('Feed Entries change on DOM Load', function() {
-
+        var errorMessage = "Null Exception. DOM element is not accessible.";
         var originalFeed, newFeed;
         var i = 0,
             match, originalResultArray = [],
@@ -158,11 +196,17 @@ $(function() {
         beforeEach(function(done) {
             loadFeed(0, function() {
                 originalFeed = document.querySelector('.feed').innerHTML;
-                while (match = regex.exec(originalFeed)) {
-                    originalResultArray[i] = match[1];
-                    i++;
+                if (originalFeed === null || originalFeed === '') {
+                    throw errorMessage;
                 }
-
+                try {
+                    while (match = regex.exec(originalFeed)) {
+                        originalResultArray[i] = match[1];
+                        i++;
+                    }
+                } catch (e) {
+                    console.error(e);
+                }
 
                 loadFeed(1, done);
 
@@ -173,11 +217,17 @@ $(function() {
         i = 0;
         it('DOM changes when new feed is loaded', function(done) {
             newFeed = document.querySelector('.feed').innerHTML;
-            while (match = regex.exec(newFeed)) {
-                newResultArray[i] = match[1];
-                i++;
+            if (newFeed === null || newFeed === '') {
+                throw errorMessage;
             }
-
+            try {
+                while (match = regex.exec(newFeed)) {
+                    newResultArray[i] = match[1];
+                    i++;
+                }
+            } catch (e) {
+                console.error(e);
+            }
             for (let arrayLength = 0; arrayLength < originalResultArray.length; arrayLength++) {
                 expect(originalResultArray[arrayLength]).not.toBe(newResultArray[arrayLength]);
             }
