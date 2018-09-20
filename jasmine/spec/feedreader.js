@@ -22,124 +22,86 @@ $(function() {
         });
 
 
-        /* TODO: Write a test that loops through each feed
+        /*  This test loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
         it('the urls are present and not empty', function() {
 
-            if (allFeeds === [] || allFeeds === null) {
-                throw errorMessage;
-            }
-            try {
-                for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
 
-                    expect(allFeeds[allFeedsIndx].hasOwnProperty("url")).toBe(true); //checks if the allFeeds array has the url property defined
-                    expect(allFeeds[allFeedsIndx].url).not.toBe(null); //checks for null values
-                    expect(allFeeds[allFeedsIndx].url).not.toBe(''); //checks for empty values
+            for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
 
-                }
-            } catch (e) {
-                console.error(e);
+                expect(allFeeds[allFeedsIndx].hasOwnProperty("url")).toBe(true); //checks if the allFeeds array has the url property defined
+                expect(allFeeds[allFeedsIndx].url).not.toBe(null); //checks for null values
+                expect(allFeeds[allFeedsIndx].url).not.toBe(''); //checks for empty values
+
             }
+
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* This testt loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
         it('the names are present and not empty', function() {
-            if (allFeeds === [] || allFeeds === null) {
-                throw errorMessage;
-            }
-            try {
-                for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
 
-                    expect(allFeeds[allFeedsIndx].hasOwnProperty("name")).toBe(true); //checks if the allFeeds array has the name property defined
-                    expect(allFeeds[allFeedsIndx].name).not.toBe(null); //checks for null values
-                    expect(allFeeds[allFeedsIndx].name).not.toBe(''); //checks for empty values
+            for (let allFeedsIndx = 0; allFeedsIndx < allFeeds.length; allFeedsIndx++) {
 
-                }
-            } catch (e) {
-                console.error(e);
+                expect(allFeeds[allFeedsIndx].hasOwnProperty("name")).toBe(true); //checks if the allFeeds array has the name property defined
+                expect(allFeeds[allFeedsIndx].name).not.toBe(null); //checks for null values
+                expect(allFeeds[allFeedsIndx].name).not.toBe(''); //checks for empty values
+
             }
+
         });
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
 
-    /* TODO: Write a test that ensures the menu element is
-     * hidden by default. You'll have to analyze the HTML and
-     * the CSS to determine how we're performing the
-     * hiding/showing of the menu element.
+
+    /* This test ensures that the menu element is
+     * hidden by default.
      */
     describe('The menu', function() {
         var errorMessage = "Null Exception. DOM element is not accessible.";
 
         it('menu element is hidden by default', function() {
 
-            var bodyElementClassName = document.querySelector('body').className;
-            if (bodyElementClassName === null || bodyElementClassName === '') {
-                throw errorMessage;
-            }
-            try {
-                expect(bodyElementClassName).toBe("menu-hidden"); // checks for the css class that drives menu visibility
-            } catch (e) {
-                console.error(e);
-            }
+            var bodyElementClassNamePresent = $(document.querySelector('body')).hasClass("menu-hidden");
+            expect(bodyElementClassNamePresent).toBe(true); // checks for the css class that drives menu visibility
 
         });
-        /* TODO: Write a test that ensures the menu changes
-         * visibility when the menu icon is clicked. This test
-         * should have two expectations: does the menu display when
-         * clicked and does it hide when clicked again.
+        /* This test  ensures that the menu changes
+         * visibility when the menu icon is clicked.
          */
         it('hamburger menu is displayed when clicked and hidden when clicked again', function() {
 
             //when the menu icon is first clicked
             $('.menu-icon-link').click();
-            var bodyElementClassName = document.querySelector('body').className;
-            if (bodyElementClassName === null) {
-                throw errorMessage;
-            }
-            try {
-                expect(bodyElementClassName).not.toBe("menu-hidden");// checks for the css class that drives menu visibility
-            } catch (e) {
-                console.error(e);
-            }
+            var menuDisplyed = $(document.querySelector('body')).hasClass("menu-hidden");
+
+            expect(menuDisplyed).not.toBe(true); // checks for the css class that drives menu visibility
+
 
             //when the menu icon is clicked again
             $('.menu-icon-link').click();
-            var bodyElementClassName = document.querySelector('body').className;// checks for the css class that drives menu visibility
-            if (bodyElementClassName === null) {
-                throw errorMessage;
-            }
-            try {
-                expect(bodyElementClassName).toBe("menu-hidden");
-            } catch (e) {
-                console.error(e);
-            }
+            menuDisplyed = $(document.querySelector('body')).hasClass("menu-hidden"); // checks for the css class that drives menu visibility
 
-
+            expect(menuDisplyed).toBe(true);
         });
 
 
 
 
     });
-    /* TODO: Write a new test suite named "Initial Entries" */
 
-    /* TODO: Write a test that ensures when the loadFeed
+
+    /* This test  ensures when the loadFeed
      * function is called and completes its work, there is at least
      * a single .entry element within the .feed container.
-     * Remember, loadFeed() is asynchronous so this test will require
-     * the use of Jasmine's beforeEach and asynchronous done() function.
+     *
      */
     describe('Initial Entries', function() {
-
-        var feed1, feed2;
-
         beforeEach(function(done) {
             loadFeed(0, function() {
                 done();
@@ -148,7 +110,7 @@ $(function() {
         });
 
         it('there at least one entry in the feed container after loadFunction completes', function(done) {
-            expect($('.feed').length).toBeGreaterThan(0);
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         });
 
@@ -156,11 +118,9 @@ $(function() {
 
     });
 
-    /* TODO: Write a new test suite named "New Feed Selection" */
-
-    /* TODO: Write a test that ensures when a new feed is loaded
+    /* This test  ensures when a new feed is loaded
      * by the loadFeed function that the content actually changes.
-     * Remember, loadFeed() is asynchronous.
+     *
      */
 
     describe('New Feed Selection', function() {
@@ -184,13 +144,13 @@ $(function() {
 
 
     //alternate test dom for feed changes
-    /*This test looks at the div element that holds the links/text that is displayed to the user in the DOM.
+    /*This test looks at the div element that holds the links/text that are displayed to the user in the DOM.
     We will do a regex match to extract the <h2></h2> tag from the string retuned by our querySelector and hold the results in an array.
-    This will be done before and after the feed changes and the final results are compared.
+    This will be done before and after the feed changes and the final results arrays are compared.
     Sources used for regex match : https://stackoverflow.com/questions/2622903/regex-how-to-get-contents-from-tag-inner-use-javascript
     */
 
-    describe('Feed Entries changes are reflected in the DOM', function() {
+    describe('Feed Entry changes are reflected in the DOM', function() {
         var errorMessage = "Null Exception. DOM element is not accessible.";
         var originalFeed, newFeed;
         var i = 0,
@@ -238,10 +198,7 @@ $(function() {
             }
             done();
         });
-
-
-
-    });
+  });
 
 
 }());
