@@ -47,6 +47,15 @@ Review the Feed Reader Testing [Project Rubric](https://review.udacity.com/#!/pr
 20. When complete - all of your tests should pass.
 21. Write a README file detailing all steps required to successfully run the application. If you have added additional tests (for Udacious Test Coverage),  provide documentation for what these future features are and what the tests are checking for.
 
+How to download/clone the project?
+
+In order to clone the project onto your computer via HTTPS URLs (recommended) do the following:
+
+1. Open a new command prompt window
+
+2. Type git clone https://github.com/smwillson/feedReaderTesting.git at the propmt
+
+More information : https://help.github.com/articles/which-remote-url-should-i-use/
 
 How to run the application:
 In order to run the application, simply click on the index.html file to launch.
