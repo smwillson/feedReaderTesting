@@ -8,7 +8,7 @@ $(function() {
      * feeds definitions, the allFeeds variable in our application.
      */
     describe('RSS Feeds', function() {
-        var errorMessage = "allFeeds array is not defined or null."
+
             /* This is our first test - it tests to make sure that the
              * allFeeds variable has been defined and that it is not
              * empty. Experiment with this before you get started on
@@ -63,7 +63,7 @@ $(function() {
      * hidden by default.
      */
     describe('The menu', function() {
-        var errorMessage = "Null Exception. DOM element is not accessible.";
+
 
         it('menu element is hidden by default', function() {
 
